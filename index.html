@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Aapke liye</title>
+</head>
+<style>
+body {background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+          background-repeat:no-repeat;
+          background-attachment:fixed;}
+
+header h1 {text-align:center;}
+
+
+#lyrics p {text-align:center;
+ font-style:italic;
+  display: none;
+  font-size: 1.2em;
+  color: #6b2d2d;
+  transition: all 0.4s ease;
+}
+
+#lyrics p.active {text-align:center;
+ font-style:italic;
+  display: block;
+  font-size: 1.6em;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+.emoji1 {position:fixed;
+              top:10%;
+              left:20%;
+              font-size:5vw;}
+
+.emoji3 {position:fixed;
+               top:18%;
+               left:70%;
+               font-size:5vw;}
+
+.emoji2 {position:fixed;
+              top:30%;
+              left:35%;
+             font-size:5vw;}
+
+.emoji4 {position:fixed;
+               top:2%;
+              left:30%;
+              }
+
+.audbox {text-align:center;}
+</style>
+<body>
+<header>
+<h1><i>"This is for you"</i></h1>
+</header>
+<div class="audbox">
+<audio  id="song" controls>
+      <source src="msorr.mp3" type="audio/mp3"/>
+</audio>
+</div>
+
+<div id="lyrics">
+<p data-time="0">Main gussa nahi tha aapse,</p>
+<p data-time="5">Bas thoda sa rootha hua tha,</p>
+<p data-time="9">Jo kehna tha mujhe aapko pyaar se,</p>
+<p data-time="13">Wo mera tareeka galat tha</p>
+
+<p data-time="17">Aapne sorry bhi bola mujhe,</p>
+<p data-time="20">lekin main chup sa reh gaya,</p>
+<p data-time="25">Dil me bohot kuch tha batane ko,</p>
+<p data-time="28">lekin us samay kuch nahi bata paaya</p>
+
+<p data-time="32">Lekin jab pata chala tum ro di ho sahi me,</p>
+<p data-time="40">Mera dil bhi toot gaya tha,</p>
+<p data-time="44">Aapke aansu dekh ke,</p>
+<p data-time="48">Mujhe andar se bohot bura laga</p>
+
+<p data-time="52">sach me snuhuu, sach me sorry,</p>
+<p data-time="58">Main tumhe khush hi dekhna chahta hoon,</p>
+<p data-time="62">lekin us samay emotions aise the,</p>
+<p data-time="67">Ki main aapko rula baitha, Isliye sorry</p>
+</div>
+
+<div class="emoji1">😘</div>
+<div class="emoji2">🥰</div>
+<div class="emoji3">🧡</div>
+<div class="emoji4">✨</div>
+
+<script>
+const song = document.getElementById("song");
+const lines = document.querySelectorAll("#lyrics p");
+
+song.addEventListener("timeupdate", () => {
+  const currentTime = song.currentTime;
+
+  lines.forEach((line, index) => {
+    const startTime = parseFloat(line.getAttribute("data-time"));
+
+    const nextLine = lines[index + 1];
+    const endTime = nextLine
+      ? parseFloat(nextLine.getAttribute("data-time"))
+      : song.duration;
+
+    if (currentTime >= startTime && currentTime < endTime) {
+      line.classList.add("active");
+    } else {
+      line.classList.remove("active");
+    }
+  });
+});
+</script>
+
+<!--
+<script>
+const song = document.getElementById('song');
+const lines = document.querySelectorAll('#lyrics p');
+
+song.addEventListener("timeupdate", () => {
+            const currentTime = song.currentTime;
+
+   lines.forEach((line,index) => {
+          const time = parseFloat(line.getAttribute("data-time"));
+
+ if (currentTime >= time) {
+        line.style.display = "block";
+} else {
+         line.style.display = "none";
+}
+});
+});-->
+</script>
+</body>
+</html>
